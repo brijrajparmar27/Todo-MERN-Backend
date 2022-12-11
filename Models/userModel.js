@@ -12,9 +12,25 @@ const userSchema = mongoose.Schema({
     }
 })
 
-userSchema.statics.login = async function () {
+userSchema.statics.login = async function (email, password) {
 
+    if (!email || !password) {
+        throw Error("cannot be empty");
+    }
+
+    const user = await this.findOne({ email })
+    if (!user) {
+        throw Error("incorrect Email");
+    }
+
+    let matched = await bcrypt.compare(password, user.password);
+    if (!matched) {
+        throw Error("incorrect Password");
+    }
+
+    return user
 }
+
 userSchema.statics.signup = async function (email, password) {
     if (!email || !password) {
         throw Error("cannot be empty");
@@ -31,4 +47,5 @@ userSchema.statics.signup = async function (email, password) {
 
     return user;
 }
+
 module.exports = mongoose.model("userModel", userSchema, "user");
