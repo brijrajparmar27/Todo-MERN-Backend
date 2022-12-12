@@ -36,7 +36,6 @@ userSchema.statics.signup = async function (email, password) {
         throw Error("cannot be empty");
     }
     const exists = await this.findOne({ email })
-    console.log(exists);
     if (exists) {
         throw Error("Email Taken");
     }
