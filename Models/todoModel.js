@@ -8,6 +8,10 @@ const todoSchema = mongoose.Schema({
     isPending: {
         type: Boolean,
         default: true
+    },
+    createdBY: {
+        type: String,
+        required: true
     }
 },{createdAt:true})
 

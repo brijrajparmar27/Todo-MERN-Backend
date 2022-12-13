@@ -1,13 +1,15 @@
 const todoModel = require("../Models/todoModel");
 
 const getAllTodo = (req, res) => {
-    todoModel.find({}).then(data => {
+    const {id} = req.params
+    todoModel.find({createdBY:id}).then(data => {
+        console.log(data);
         res.json(data).status(200)
     })
 }
 const postTodo = (req, res) => {
-    const { todo, isPending } = req.body;
-    todoModel.create({ todo, isPending }).then((data) => {
+    const { todo, isPending, createdBY } = req.body;
+    todoModel.create({ todo, isPending, createdBY }).then((data) => {
         res.json(data).status(200)
     })
 }

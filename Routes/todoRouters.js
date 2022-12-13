@@ -8,7 +8,7 @@ const {
 
 const todos = express.Router();
 
-todos.get("/", getAllTodo)
+todos.get("/:id", getAllTodo)
 todos.post("/", postTodo)
 todos.delete("/:id", deleteTodo)
 todos.patch("/:id", updateTodo)
