@@ -10,7 +10,7 @@ const login = (req, res) => {
 
     user.login(email, password).then(data => {
         let token = createToken(data);
-        res.json({ _id: data._id, jwt: token, email: data.email }).status(200);
+        res.json({ _id: data._id, jwt: token, email: data.email, projects: data.projects }).status(200);
     }).catch(err => {
         res.json({ message: err.message }).status(400);
     })
@@ -26,7 +26,17 @@ const signup = (req, res) => {
     })
 }
 
+const AddProject = (req, res) => {
+    const { projects, _id } = req.body;
+    console.log(projects, _id);
+    user.findOneAndUpdate({ _id }, { projects }).then(data => {
+        console.log(data);
+        res.json(data).status(200);
+    })
+}
+
 module.exports = {
     login,
-    signup
+    signup,
+    AddProject
 }

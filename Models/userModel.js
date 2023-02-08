@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const defProj = [
+    {
+        name: "default",
+        id: 2641989273
+    }
+]
+
 const userSchema = mongoose.Schema({
     email: {
         type: String,
@@ -9,6 +16,10 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    projects: {
+        type: Array,
+        default: defProj
     }
 })
 
