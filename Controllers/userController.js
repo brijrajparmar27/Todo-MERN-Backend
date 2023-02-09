@@ -56,8 +56,7 @@ const AddProject = (req, res) => {
       {
         new: true,
       }
-    )
-    .then((data) => {
+        .then((data) => {
       console.log(data, " updated projects");
       res.json(data).status(200);
     });
