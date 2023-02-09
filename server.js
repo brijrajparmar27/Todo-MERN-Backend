@@ -5,7 +5,6 @@ const todos = require("./Routes/todoRouters");
 const users = require("./Routes/userRoutes");
 const cors = require("cors");
 
-
 const app = express();
 
 app.use(cors());
@@ -15,7 +14,7 @@ app.use("/api/todo", todos);
 app.use("/api/user", users);
 
 mongoose.connect(process.env.MONGO).then(() => {
-    app.listen(process.env.PORT, () => {
-        console.log("listening at port ", process.env.PORT);
-    })
-})
+  app.listen(process.env.PORT, () => {
+    console.log("listening at port ", process.env.PORT);
+  });
+});

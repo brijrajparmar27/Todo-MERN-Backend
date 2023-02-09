@@ -48,7 +48,6 @@ const signup = (req, res) => {
 
 const AddProject = (req, res) => {
   const { projects, _id } = req.body;
-  console.log(projects, _id);
   user
     .findOneAndUpdate(
       { _id },
@@ -58,7 +57,21 @@ const AddProject = (req, res) => {
       }
     )
     .then((data) => {
-      console.log(data, " updated projects");
+      res.json(data).status(200);
+    });
+};
+
+const DelProject = (req, res) => {
+  const { projects, _id } = req.body;
+  user
+    .findOneAndUpdate(
+      { _id },
+      { projects },
+      {
+        new: true,
+      }
+    )
+    .then((data) => {
       res.json(data).status(200);
     });
 };
@@ -67,4 +80,5 @@ module.exports = {
   login,
   signup,
   AddProject,
+  DelProject,
 };
